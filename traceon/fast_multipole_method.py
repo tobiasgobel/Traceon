@@ -152,7 +152,7 @@ def solve_iteratively_solucia(triangles, dielectric_indices, dielectric_values, 
     elif precision > 4:
         l_max = 32
     
-    N_max = 475
+    N_max = 64
       
     st = time.time()
     fmm = solucia.FastMultipoleMethodTriangles(triangles, N_max, l_max)
