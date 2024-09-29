@@ -134,10 +134,7 @@ def solve_iteratively_pyfmmlib(triangles, dielectric_indices, dielectric_values,
 
 def solve_iteratively_solucia(triangles, dielectric_indices, dielectric_values, right_hand_side, precision):
     
-    count = 0
-    def increase_count(*args):
-        nonlocal count, tol
-        count += 1
+    
     
     assert len(dielectric_indices) == 0, "Dielectrics (or boundary) not yet supported in Solucia"
     
@@ -157,6 +154,12 @@ def solve_iteratively_solucia(triangles, dielectric_indices, dielectric_values, 
     st = time.time()
     fmm = solucia.FastMultipoleMethodTriangles(triangles, N_max, l_max)
     print(f'Solucia preparation took: {time.time()-st:.2f} s')
+    
+    count = 0
+    def increase_count(error):
+        nonlocal count, tol
+        print(f'Iteration: {count:d} \tresidual: {error:.2e}\ttarget: {tol:.2e}')
+        count += 1
      
     def matvec(charges):
         return fmm.potentials(charges) / (4*pi)
