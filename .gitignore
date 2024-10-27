@@ -1,4 +1,5 @@
 *.swp
+traceonenv
 traceon.egg-info/*
 build/*
 traceon/__pycache__/*
