@@ -8,3 +8,4 @@ __pycache__
 *.o
 build/*
 dist/*
+tests/world_out.stl
